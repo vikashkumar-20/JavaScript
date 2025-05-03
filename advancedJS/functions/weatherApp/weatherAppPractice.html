@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Application</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .container {
+            background: #ffffffcc;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .search {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .search input {
+            flex: 1;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+
+        .search button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search button:hover {
+            background-color: #2980b9;
+        }
+
+        .main-section,
+        .footer-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .main-section p,
+        .footer-section div {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        #c-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        #d-t {
+            font-size: 1rem;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        #sky-visiblity {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .footer-section div {
+            font-size: 1rem;
+            color: #34495e;
+        }
+
+        .footer-section div strong {
+            font-weight: bold;
+        }
+
+        #currTemp,
+        #minTemp,
+        #maxTemp {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        #currTemp {
+            color: #e74c3c;
+        }
+
+        #minTemp {
+            color: #f39c12;
+        }
+
+        #maxTemp {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="search">
+            <input type="text" id="searchCity" placeholder="Search your city" />
+            <button id="search-btn">Click to search</button>
+        </div>
+
+        <div class="main-section" id="main-section">
+            <p id="c-name"></p>
+            <p id="d-t"></p>
+            <p id="sky-visiblity"></p>
+            <p id="icon"></p>
+            <p id="currTemp"></p>
+            <p id="minTemp"></p>
+            <p id="maxTemp"></p>
+        </div>
+
+        <div class="footer-section">
+            <div id="feels-like"><strong></strong></div>
+            <div id="humidity"><strong></strong></div>
+            <div id="wind"><strong></strong></div>
+            <div id="pressure"><strong></strong></div>
+        </div>
+    </div>
+
+</body>
+<script>
+    const apiKey = '5cf1a79fd6f9129e938db384e43c90c5';
+    let c_name = document.getElementById('c-name');
+    let date_time = document.getElementById('d-t');
+    let skyVisiblity = document.getElementById('sky-visiblity');
+    let currTemp = document.getElementById('currTemp')
+    let minTemp = document.getElementById('minTemp')
+    let maxTemp = document.getElementById('maxTemp')
+    const getWeather = async () => {
+        const cityInput = document.getElementById('searchCity');
+        const city = cityInput.value.trim();
+        console.log(city);
+
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            c_name.innerText = data.name;
+            const localTime = new Date((data.dt + data.timezone) * 1000);
+            date_time.innerText = localTime.toLocaleDateString();
+            skyVisiblity.innerText = `Sky Visiblity: ${data.weather[0].main}`;
+            currTemp.innerText = `${data.main.temp} °C`;
+            minTemp.innerText = `Min Temp: ${data.main.temp_min} °C`;
+            maxTemp.innerText = `Max Temp: ${data.main.temp_max} °C`;
+
+            // Update footer section
+            document.getElementById('feels-like').innerHTML = `Feels Like: <strong>${data.main.feels_like} °C</strong>`;
+            document.getElementById('humidity').innerHTML = `Humidity: <strong>${data.main.humidity}%</strong>`;
+            document.getElementById('wind').innerHTML = `Wind: <strong>${data.wind.speed} m/s</strong>`;
+            document.getElementById('pressure').innerHTML = `Pressure: <strong>${data.main.pressure} hPa</strong>`;
+
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    
+    document.getElementById('search-btn').addEventListener('click', getWeather);
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Mouse Events</title>
+
+    <style>
+        .addTransiton { 
+            background-color: aquamarine;
+            border-radius: 50%;
+            transition: background-color 0.5s ease, border-radius 0.5s ease;
+        }
+        .addTransiton2 {
+            background-color: blue;
+            transform: translateX(-30rem);
+            transition: transform 5s ease;
+        }
+
+        .addTransiton3 {
+            background-color: green;
+            transform: translateX(30rem);
+            transition: transform 5s ease;
+        }
+
+        .addTransiton4 {
+            background-color: red;
+            transform: translateX(0);
+            transition: transform 0.5s ease;
+        }
+        
+        /* Add default position style */
+        .rectangle {
+            transition: transform 0.5s ease;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div style="text-align: center;">
+        <div class="rectangle" style="border:1px solid black; height: 200px; width:200px; margin: 0 auto; margin-top:200px;margin-bottom:20px"></div>
+        <button id="mybutton">Click Me</button>
+    </div>
+    
+    <script>
+        let rectDiv = document.querySelector('.rectangle');
+        let myButton = document.getElementById('mybutton');
+
+        myButton.addEventListener('click', () => { 
+            rectDiv.style.backgroundColor = "red";
+        })
+
+        myButton.addEventListener('dblclick', () => { 
+            rectDiv.style.backgroundColor = "";
+            rectDiv.classList.add('addTransiton');
+        })
+
+        rectDiv.addEventListener('mouseover', () => { 
+            rectDiv.style.backgroundColor = "";
+            rectDiv.classList.add('addTransiton2');
+        })
+
+        rectDiv.addEventListener('mouseup', () => { 
+            rectDiv.style.backgroundColor = "";
+            rectDiv.classList.add('addTransiton4');
+        })
+
+        rectDiv.addEventListener('mouseout', () => { 
+            rectDiv.style.backgroundColor = "";
+            rectDiv.classList.add('addTransiton3');
+        })
+    </script>
+</body>
+</html>

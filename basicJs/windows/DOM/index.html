@@ -1,0 +1,36 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <title>Best JS Course</title>
+   </head>
+   <body>
+     <h1>Best JS Course</h1>
+     <p>Understanding The DOM Tree Structure</p>
+     <hr />
+     <p>It's easy. Helps JS to communicate with HTML</p>
+ 
+     <!-- * Let's see DOM Navigation -->
+     <script>
+       let parent = document;
+       let htmlBody = document.body;
+       let htmlHead = document.head;
+ 
+       // let bodyChild = htmlBody.childNodes;
+       let bodyChild = htmlBody.children;
+ 
+       let firstChild = htmlBody.firstElementChild;
+       // let firstChild = htmlBody.firstChild;
+ 
+       // let lastChild = htmlBody.lastChild;
+ 
+       let nextSibling = firstChild.nextElementSibling;
+ 
+       let previousSibling = nextSibling.previousElementSibling;
+ 
+       let parentNode = previousSibling.parentElement;
+ 
+       console.log(parentNode);
+     </script>
+   </body>
+ </html>

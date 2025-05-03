@@ -1,0 +1,121 @@
+<!--* async and await are JavaScript keywords introduced in ECMAScript 2017 (ES8) that make asynchronous code look and behave more like synchronous code, making it easier to write, read, and reason about asynchronous operations. -->
+
+<!--? async Function Declaration: The async keyword is used to declare an asynchronous function. An asynchronous function returns a Promise implicitly, even if the return value is not explicitly wrapped in a Promise. Inside an asynchronous function, you can use the await keyword to pause the execution of code until a Promise is resolved or rejected. -->
+
+<!--? await Operator: The await keyword is used to pause the execution of an async function until a Promise is settled (resolved or rejected). It can only be used inside an async function. When await is used with a Promise, it waits for the Promise to resolve and returns the resolved value. If the Promise is rejected, it throws an error that can be caught using a try...catch block. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #d5dede;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffffea;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            padding: 40px 30px;
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .api-body {
+            font-size: 1.25rem;
+            color: #444;
+            padding: 20px;
+            border: 1px dashed #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 30px;
+            min-height: 80px;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            width: 180px;
+            height: 50px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            background-color: #222;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #e63946;
+            transform: scale(1.05);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Dad Jokes</h1>
+        <section class='api-body'></section>
+        <button id="btn">Get Another Joke</button>
+    </div>
+
+
+    <script>
+        const apiUrl = "https://icanhazdadjoke.com/";
+        let btn = document.getElementById('btn');
+        let jokeContainer = document.querySelector('.api-body');
+
+
+        const fetchJoke = async () => {
+            jokeContainer.innerText = "Loading..."
+
+            const response = await fetch(apiUrl,
+                {
+                    headers: {
+                        accept: "application/json"
+                    }
+                }
+            )
+            const data = await response.json();
+            jokeContainer.innerText = data.joke;
+
+
+        }
+
+        fetchJoke();
+
+        btn.addEventListener('click', fetchJoke)
+
+    </script>
+</body>
+
+</html>

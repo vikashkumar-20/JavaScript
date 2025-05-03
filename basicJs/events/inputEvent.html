@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Event</title>
+</head>
+<body>
+    <input type="text" id="input-field" name="username">
+    <div class="output">
+        <p id='input-value'>Input Value: </p>
+        <p id='input-name'>Input Name: </p>
+        <p id='input-type'>Input Type: </p>
+        <p id='event-type'>Event Type: </p>
+    </div>
+
+    <script>
+        let inputValue = document.getElementById('input-field');
+
+        const handleInputValues = (e) => { 
+            document.getElementById('input-value').innerText = `Input Value: ${e.target.value}`;
+            document.getElementById('input-name').innerText = `Input Name: ${e.target.name}`;
+            document.getElementById('input-type').innerText = `Input Type: ${e.inputType}`;
+            document.getElementById('event-type').innerText = `Event Type: ${e.type}`;
+            console.log(e);
+        }
+        
+        // inputValue.addEventListener('input', handleInputValues) //input event listner
+        inputValue.addEventListener('change', handleInputValues) // change we we remove focus from input field.
+    </script>
+</body>
+</html>

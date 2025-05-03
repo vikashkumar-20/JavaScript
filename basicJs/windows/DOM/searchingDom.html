@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seaching Dom</title>
+</head>
+
+<body>
+
+    <h1 id="heading">Welcome to the JS Course</h1>
+    <ul class="ul-li-nodes">
+        <li>Node 1</li>
+        <li>Node 2</li>
+        <li>Node 3</li>
+        <li>Node 4</li>
+    </ul>
+
+    <p>This is para</p>
+    <script>
+        let heading = document.getElementById('heading');
+        console.log(heading); // <h1 id="heading">Welcome to the JS Course</h1>
+
+
+        console.log(heading.innerHTML); //Welcome to the JS Course
+        console.log(heading.innerText); // Welcome to the JS Course
+        console.log(heading.textContent); //Welcome to the JS Course
+
+
+        let getDocumentbyClass = document.getElementsByClassName('ul-li-nodes');
+        console.log(getDocumentbyClass); //HTML Collection
+
+        console.log(...getDocumentbyClass); // Here we can also use for of or for each (after converting in array)and get same output.
+
+        for (elem of getDocumentbyClass) {
+            console.log(elem);
+        }
+
+
+        /* Output
+
+        ul class="ul-li-nodes">
+        <li>Node 1</li>
+        <li>Node 2</li>
+        <li>Node 3</li>
+        <li>Node 4</li>
+        </ul>
+        */
+
+        let head = document.querySelector("#heading");
+        console.log(head); // Same as getElementByID
+
+        console.log(head.innerText);
+
+        let ulbyClass = document.querySelector(".ul-li-nodes");
+        console.log(ulbyClass); // same as getELementByClassname
+
+
+        let selectli = document.querySelector("li");
+        console.log(selectli); // It selects one li
+
+        let selectAllLi = document.querySelectorAll("li");
+        console.log(selectAllLi); // It gives node list of all li. after getting we can use ... or for of to get actual values.
+
+
+        let para = document.querySelector("p");
+        console.log(para); // It gives single element <p>  </p>
+
+        let para1 = document.querySelectorAll("p");
+        console.log(para1); // It gives node list
+
+        console.log(heading.nextElementSibling);  // Give next sibling as a object
+
+        console.log(document.body.firstElementChild); // First element child
+
+        console.log(document.body.lastElementChild)
+
+    
+
+
+        
+
+
+
+    </script>
+</body>
+
+</html>

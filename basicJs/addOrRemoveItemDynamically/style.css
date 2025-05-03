@@ -1,0 +1,106 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.container {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input field and add button container (flexbox to align side by side) */
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#inputField {
+    flex-grow: 1; /* Allow the input to grow and take available space */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#addbtn {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Adds space between input and button */
+}
+
+#addbtn:hover {
+    background-color: #45a049;
+}
+
+/* List elements container */
+.list-elements {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.showElementHere {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showElementHere li {
+    font-size: 16px;
+    margin: 0;
+    padding-right: 10px;
+    flex-grow: 1;
+}
+
+.deletebtn {
+    padding: 6px 10px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deletebtn:hover {
+    background-color: #e53935;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+    .input-container {
+        flex-direction: column; /* Stack input and button vertically on small screens */
+    }
+
+    #inputField {
+        width: 100%;
+        margin-bottom: 10px; /* Adds space between input and button */
+    }
+
+    #addbtn {
+        width: 100%;
+    }
+}

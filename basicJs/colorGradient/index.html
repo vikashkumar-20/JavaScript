@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Gradient</title>
+</head>
+
+<body style="background-image: linear-gradient(to right, #a3a2df, #30f7c7); text-align: center; margin-top: 200px;">
+    <div class="container">
+        <div>
+            <button id="f-btn" style="background-color: navy; color: white; width: 8rem; height: 3rem; border-radius: 25px; font-size: 1rem; margin-right : 20px;">#a3a2df</button>
+            <button id="s-btn" style="background-color: yellow; color: black; width: 8rem; height: 3rem; border-radius: 25px; font-size: 1rem; margin-bottom: 10px;">#30f7c7</button>
+        </div>
+        <h2 id="clickToCopy" style="margin-bottom: 20px;">Tap the color code to copy it</h2>
+        <div class="copyCode" style="font-size: larger;">
+            background-image: linear-gradient(to right, #a3a2df, #30f7c7)
+        </div>
+    </div>
+</body>
+<script>
+    let ftbtn = document.getElementById('f-btn');
+    let stbtn = document.getElementById('s-btn');
+    let copyDiv = document.querySelector('.copyCode');
+
+    let rgb1 = "#a3a2df";
+    let rgb2 = "#30f7c7";
+
+
+    const randomColor = () => { 
+        let colors = `#${Math.random().toString(16).slice(2, 8)}`
+        return colors;
+    }
+
+    const handleButton1 = () => {
+        rgb1 = randomColor();
+        ftbtn.innerText = rgb1;
+        document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        copyDiv.textContent = `backgroundImage: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        console.log(rgb1);
+    }
+
+    const handleButton2 = (e) => {
+        rgb2 = randomColor();
+        stbtn.innerText = rgb2;
+        document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        copyDiv.innerHTML = `backgroundImage: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        console.log(rgb2);
+    }
+
+    ftbtn.addEventListener('click', handleButton1);
+    stbtn.addEventListener('click', handleButton2);
+
+    copyDiv.addEventListener('click', () => { 
+        navigator.clipboard.writeText(copyDiv.innerText);
+        alert("Sucessfully Copied !!")
+    })
+
+
+
+</script>
+
+</html>

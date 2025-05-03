@@ -1,0 +1,125 @@
+<!--* In JavaScript, the try...catch statement is used for error handling. It allows you to catch and handle exceptions (errors) that occur within a block of code. Here's how it works:
+
+ <!--? try Block: The try block contains the code that you want to execute. It is the block of code where you anticipate that an error might occur. -->
+
+<!--? catch Block: The catch block follows the try block and is used to catch any exceptions (errors) that occur within the try block. If an exception occurs, JavaScript jumps to the catch block to handle the error. The catch block takes an error object as a parameter, which can be used to access information about the error, such as its message or stack trace. -->
+
+<!--? finally Block (Optional): The finally block, if provided, is executed regardless of whether an error occurs or not. It is typically used for cleanup tasks that should always be performed, such as closing resources or releasing locks. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #d5dede;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffffea;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            padding: 40px 30px;
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .api-body {
+            font-size: 1.25rem;
+            color: #444;
+            padding: 20px;
+            border: 1px dashed #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 30px;
+            min-height: 80px;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            width: 180px;
+            height: 50px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            background-color: #222;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #e63946;
+            transform: scale(1.05);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Dad Jokes</h1>
+        <section class='api-body'></section>
+        <button id="btn">Get Another Joke</button>
+    </div>
+
+
+    <script>
+        const apiUrl = "https://icanhazdadjoke.com/";
+        let btn = document.getElementById('btn');
+        let jokeContainer = document.querySelector('.api-body');
+
+
+        const fetchJoke = async () => {
+            jokeContainer.innerText = "Loading..."
+            try {  
+                const response = await fetch(apiUrl,
+                    {
+                        headers: {
+                            accept: "application/json"
+                        }
+                    }
+                )
+                const data = await response.json();
+                jokeContainer.innerText = data.joke;
+            }
+            catch(error){
+                jokeContainer.textContent = "Oops! Something went wrong. Please try again later."
+                console.log(error)
+            }
+        }
+
+        fetchJoke();
+
+        btn.addEventListener('click', fetchJoke)
+
+    </script>
+</body>
+
+</html>

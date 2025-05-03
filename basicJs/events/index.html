@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+    <!--- There are three types of event:  inline evenet, DOM event, addEventListner--->
+
+    <h2>Using Inline</h2>
+    <button onclick='alert("Welcome on Click")'>Click Me</button>
+    <button ondblclick="alert('Welcome on Double Click')">Dobule Click</button>
+
+    <h2>Using DOM</h2>
+    <button id="clickme">Click Me</button>
+    <button id="onhver">On Mouse Hover</button>
+
+
+    <h2>Using AddEventListner</h2>
+    <button id="addclick">Click Me</button>
+    <button id="addonmouseup">On Mouse Up</button>
+</body>
+
+<script>
+    let clickme = document.getElementById('clickme');
+    clickme.onclick = () => { 
+        alert("Click me using DOM event");
+    }
+
+    let mousehover = document.getElementById('onhver');
+
+    mousehover.onmouseover = () => {
+        alert("Using Hover DOM event");
+    }
+
+    document.getElementById('addclick').addEventListener('click',() => { 
+        alert("Using addEventListner Click me");
+    })
+
+    document.getElementById('addonmouseup').addEventListener('mouseup', () => { 
+        alert("Using addEventListner Use onmouseup");
+    })
+
+
+</script>
+</html>

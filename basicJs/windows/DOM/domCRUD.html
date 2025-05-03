@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM CRUD</title>
+</head>
+
+<body>
+    <h1>Add & Remove Element</h1>
+    <label>Enter text:</label>
+    <input type="text" id="input-field">
+    <button id="btn">Add Element</button>
+    <div class="appendElementHere">
+
+    </div>
+
+</body>
+
+<script>
+    let inputField = document.getElementById("input-field");
+    let submitButton = document.getElementById("btn");
+    let appendElementHere = document.querySelector(".appendElementHere");
+
+
+    submitButton.addEventListener('click', () => {
+        addELement();
+    })
+
+    inputField.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            addELement();  
+        }
+    });
+
+    const addELement = () => {
+        let createElement = document.createElement('p');
+        appendElementHere.appendChild(createElement);
+        createElement.innerText = inputField.value;
+        inputField.value = '';
+    }
+
+    appendElementHere.addEventListener('click', (e) => {
+        e.target.remove();
+    })
+
+
+</script>
+
+</html>
