@@ -1,2 +1,2 @@
 # JavaScript
-Here all the Basi and Advance Js Concept and Projects During Learning Period.
+Here all the Basic and Advance Js Concept and Projects During Learning Period.
